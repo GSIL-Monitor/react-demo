@@ -1,5 +1,6 @@
 import Home from './components/Home';
 import Test from './components/Test';
+import FormValidate from './components/FormValidate';
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: Test,
+  }, {
+    path: '/formvalidate',
+    name: 'FormValidate',
+    component: FormValidate,
   }
 ];
 
