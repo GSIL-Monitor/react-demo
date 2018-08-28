@@ -1,36 +1,49 @@
 .pui-layout {
-  min-width: 1200px;
+  min-width: 1000px;
   min-height: 100vh;
   &-header {
     background: #fff;
     padding: 0;
+    &.nonav {
+      border-bottom: 1px solid #e9e9e9;
+    }
   }
   &-sider {
     background: #fff;
     border-right: 1px solid #e9e9e9;
-    &-tigger {
-      position: absolute;
-      right: -13px;
-      font-size: 12px;
-      top: 50%;
-      border: 1px solid #e9e9e9;
-      border-left: none;
-      background: #fff;
-      color: #ccc;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    &.nonav {
+      margin: 30px auto;
+      width: 1200px;
+      @media screen and (max-width: 1366px) {
+        width: 1000px;
+      }
     }
   }
   &-logo {
     height: 64px;
-    padding: 15px 45px 0;
-    &.collapsed {
-      height: 64px;
+    overflow: hidden;
+    &.nonav {
       display: inline-block;
-      padding: 0 30px;
+      width: 170px;
+      vertical-align: top;
     }
     &-img {
       height: 34px;
+      display: block;
+      margin: 15px auto;
     }
+  }
+  .ant-layout {
+    background: #fff;
+  }
+  .ant-menu-inline-collapsed {
+    width: auto;
+  }
+  .ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title {
+    padding: 0 20px !important;
   }
 }

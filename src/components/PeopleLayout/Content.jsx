@@ -1,11 +1,12 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-import './style.less';
-
 const { Content } = Layout;
-export default class PeopleLayoutContent extends React.Component {
+export default class extends React.Component {
+  static componentName = 'PeopleLayoutContent'
+
   render() {
-    return <Content>{this.props.children}</Content>
+    const { hasNav, children } = this.props;
+    return <Content className={`pui-layout-content${hasNav ? '' : ' nonav'}`}>{children}</Content>
   }
 }
