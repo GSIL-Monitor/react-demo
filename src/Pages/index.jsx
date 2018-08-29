@@ -1,7 +1,6 @@
 import React from 'react';
-import { Menu, Icon } from 'antd';
+import { Icon } from 'antd';
 import _ from 'lodash';
-import PeopleLayout from '@comps/PeopleLayout';
 import {
   Route,
   Link,
@@ -9,6 +8,8 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
+import PeopleLayout from '@comps/PeopleLayout';
+import Menu from '@comps/PeopleMenu'
 import navs from '../router';
 
 const { Header, Nav, Content } = PeopleLayout;
