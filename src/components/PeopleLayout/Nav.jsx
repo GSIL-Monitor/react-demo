@@ -8,19 +8,24 @@ export default class extends React.Component {
   static componentName = 'PeopleLayoutNav'
 
   render() {
-    const { collapsed, children, onCollapse } = this.props;
+    const { collapsed, children, doNavCollapse, onCollapse, className = '' } = this.props;
     return <Sider
-      className="pui-layout-sider"
+      className={`people-layout-sider ${className}`}
       collapsedWidth={60}
       collapsible
       collapsed={collapsed}
-      onCollapse={onCollapse}
+      trigger={null}
     >
-      <div className="pui-layout-logo">
-        <img className="pui-layout-logo-img" src={collapsed ? LogoPurple : LogoPurpleFull} alt="logo" />
+      <div className="people-layout-logo">
+        <img className="people-layout-logo-img" src={collapsed ? LogoPurple : LogoPurpleFull} alt="logo" />
       </div>
       {children}
-      {/* <div className="pui-layout-sider-tigger" onClick={onCollapse}><Icon type={collapsed ? 'right' : 'left'} /></div> */}
+      <div className="people-layout-sider-trigger" onClick={() => {
+        if (typeof onCollapse === 'function') {
+          onCollapse.call(this, collapsed);
+        }
+        doNavCollapse();
+      }}><Icon type={collapsed ? 'right' : 'left'} /></div>
     </Sider>
   }
 }

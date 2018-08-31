@@ -14,32 +14,32 @@ export default class extends React.Component {
     collapsed: false,
   }
 
-  onCollapse = () => {
+  doNavCollapse = () => {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
   render() {
     const { collapsed } = this.state;
     const { className = '', children } = this.props;
-    let headerChildren = null;
+    let headerProps = null;
     let hasHeader = false;
-    let navChildren = null;
+    let navProps = null;
     let hasNav = false;
-    let contentChildren = null;
+    let contentProps = null;
     let hasContent = false;
     React.Children.forEach(children, (child) => {
       if (React.isValidElement(child)) {
         switch (child.type.componentName) {
           case 'PeopleLayoutHeader':
-            headerChildren = child.props.children;
+            headerProps = child.props;
             hasHeader = true;
             break;
           case 'PeopleLayoutNav':
-            navChildren = child.props.children;
+            navProps = child.props;
             hasNav = true;
             break;
           case 'PeopleLayoutContent':
-            contentChildren = child.props.children;
+            contentProps = child.props;
             hasContent = true;
             break;
           default:
@@ -47,11 +47,11 @@ export default class extends React.Component {
       }
     });
     return (
-      <Layout className={`pui-layout ${className}`}>
-        {hasNav && <Nav collapsed={collapsed} onCollapse={this.onCollapse}>{navChildren}</Nav>}
+      <Layout className={`people-layout ${className}`}>
+        {hasNav && <Nav collapsed={collapsed} {...navProps} doNavCollapse={this.doNavCollapse} />}
         <Layout>
-          {hasHeader && <Header hasNav={hasNav} collapsed={collapsed}>{headerChildren}</Header>}
-          {hasContent && <Content hasNav={hasNav}>{contentChildren}</Content>}
+          {hasHeader && <Header hasNav={hasNav} collapsed={collapsed} {...headerProps} />}
+          {hasContent && <Content hasNav={hasNav} {...contentProps} />}
         </Layout>
       </Layout>
     );

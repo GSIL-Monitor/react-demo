@@ -9,7 +9,8 @@ import {
   Switch
 } from 'react-router-dom';
 import PeopleLayout from '@comps/PeopleLayout';
-import Menu from '@comps/PeopleMenu'
+import Menu from '@comps/PeopleMenu';
+import PeopleHeader from '@comps/PeopleHeader';
 import navs from '../router';
 
 const { Header, Nav, Content } = PeopleLayout;
@@ -17,19 +18,22 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 export default withRouter((props) => <PeopleLayout>
-  <Header>Header</Header>
+  <Header>
+    <PeopleHeader />
+  </Header>
   <Nav>
     <Menu
       defaultOpenKeys={['antd']}
       selectedKeys={[props.location.pathname]}
+      style={{ border: 'none' }}
       mode="inline">
-      {navs.map(route => <SubMenu
+      {navs.map(route => <Menu.SubMenu
         key={route.path}
         title={<span><Icon type={route.icon} /><span>{route.key}</span></span>}>
         {(route.children || []).map(({ path, key }) => (
-          <MenuItem key={path}><Link to={path}>{key}</Link></MenuItem>
+          <Menu.Item key={path}>{key}</Menu.Item>
         ))}
-      </SubMenu>)}
+      </Menu.SubMenu>)}
     </Menu>
   </Nav>
   <Content>
